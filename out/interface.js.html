@@ -1,4 +1,32 @@
-a=document.getElementById("canvas")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: interface.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: interface.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>a=document.getElementById("canvas")
 c=a.getContext('2d')
 
 
@@ -81,7 +109,7 @@ function Import(L){
 	height=K[1]*1
 	clear(width,height)
 	Draw=decompress(K[2]).split(" "); 
-	for(let i=0;i<Draw.length;i++){
+	for(let i=0;i&lt;Draw.length;i++){
 		grid[Math.floor(i/width)][i%width]=Draw[i]*1
 	}
 	localStorage.setItem("settings",[beadMode])
@@ -99,7 +127,7 @@ function compress (str) {
 	var output = '';
 	var count = 0;
 	S=str.split(" ")
-	for (var i = 0; i < S.length; i++) {
+	for (var i = 0; i &lt; S.length; i++) {
 	  count++;
 	  if (S[i] != S[i+1]) {
 		output +=" "+S[i] +"_"+ count;
@@ -111,9 +139,9 @@ function compress (str) {
 function decompress(str){
 	S=str.split(" ").map(k=>k.split("_"))
 	var output = '';
-	for (let i = 0; i < S.length; i++) {
+	for (let i = 0; i &lt; S.length; i++) {
 		output+=i?" ":""
-			for (let j = 0; j < S[i][1]; j++) {
+			for (let j = 0; j &lt; S[i][1]; j++) {
 			output+=(j?" ":"")+S[i][0]
 		}
 	}
@@ -159,7 +187,7 @@ function getPos(x,y){
 
 */
 function isInside(x,y){
-	return y>=0&&y<height&&x>=0&&x<width
+	return y>=0&amp;&amp;y&lt;height&amp;&amp;x>=0&amp;&amp;x&lt;width
 }
 
 
@@ -167,16 +195,16 @@ function isInside(x,y){
 function fill(x1,y1){
 	if(grid[y1][x1]==beadColor){return}
 	grid[y1][x1]=beadColor
-	if(getBead(x1-1,y1)==fillColor&&isInside(x1-1,y1)){
+	if(getBead(x1-1,y1)==fillColor&amp;&amp;isInside(x1-1,y1)){
 		fill(x1-1,y1)
 	}
-	if(getBead(x1+1,y1)==fillColor&&isInside(x1+1,y1)){
+	if(getBead(x1+1,y1)==fillColor&amp;&amp;isInside(x1+1,y1)){
 		fill(x1+1,y1)
 	}
-	if(getBead(x1,y1-1)==fillColor&&isInside(x1,y1-1)){
+	if(getBead(x1,y1-1)==fillColor&amp;&amp;isInside(x1,y1-1)){
 		fill(x1,y1-1)
 	} 
-	if(getBead(x1,y1+1)==fillColor&&isInside(x1,y1+1)){
+	if(getBead(x1,y1+1)==fillColor&amp;&amp;isInside(x1,y1+1)){
 		fill(x1,y1+1)
 	} 
 	
@@ -274,9 +302,9 @@ function draw(){
 
 
 	if(beadMode==2){
-		if(Math.log(scale)*0.3>0&&showGrid){
+		if(Math.log(scale)*0.3>0&amp;&amp;showGrid){
 		c.beginPath();
-		for(let i=0;i<=height;i++){
+		for(let i=0;i&lt;=height;i++){
 			c.moveTo(-scale*(width/2-xOffset)+a.width/2,
 					 -scale*(height/2-yOffset)+a.height/2+i*scale,
 					 );
@@ -284,7 +312,7 @@ function draw(){
 			-scale*(height/2-yOffset)+a.height/2+i*scale,
 			)
 		}
-		for(let j=0;j<=width;j++){	
+		for(let j=0;j&lt;=width;j++){	
 			c.moveTo(-scale*(width/2-xOffset)+a.width/2+j*scale,
 			-scale*(height/2-yOffset)+a.height/2,
 			);
@@ -298,7 +326,7 @@ function draw(){
 		c.stroke();
 		}
 	}
-	if(isInside(...getPos(...mouse)) && (tool==1 || tool==2)){
+	if(isInside(...getPos(...mouse)) &amp;&amp; (tool==1 || tool==2)){
 		c.beginPath()
 		if(beadMode==1){
 			c.arc(getPos(...mouse)[0]*scale-scale*(width/2-xOffset)+a.width/2+scale/2,
@@ -320,7 +348,7 @@ function draw(){
 	c.rect(0,0,35+Math.floor(paleta.length/pensPerRow)*24,a.height)
 	c.fillStyle="rgb(30,30,30)"
 	c.fill()
-	for(let i=0;i<paleta.length;i++){
+	for(let i=0;i&lt;paleta.length;i++){
 		c.beginPath()
 		c.arc(15+Math.floor(i/pensPerRow)*24,
 				15+i%Math.floor(pensPerRow)*24,
@@ -351,21 +379,21 @@ onmousedown=(e)=>{
 		dragging=true
 	}
 	if(tool==1){
-		if(mouse[0]<35+Math.floor(paleta.length/pensPerRow)*24){
+		if(mouse[0]&lt;35+Math.floor(paleta.length/pensPerRow)*24){
 			beadColor=Math.floor(Math.floor((mouse[0])/24)*pensPerRow+Math.floor((mouse[1]))/24)+1
-			if(beadColor>paleta.length||beadColor<0){beadColor=0}
+			if(beadColor>paleta.length||beadColor&lt;0){beadColor=0}
 		}else{
 			drawing=true
-			if(isInside(...getPos(e.pageX,e.pageY))&&grid[getPos(e.pageX,e.pageY)[1]][getPos(e.pageX,e.pageY)[0]]!=beadColor){
+			if(isInside(...getPos(e.pageX,e.pageY))&amp;&amp;grid[getPos(e.pageX,e.pageY)[1]][getPos(e.pageX,e.pageY)[0]]!=beadColor){
 				grid[getPos(e.pageX,e.pageY)[1]][getPos(e.pageX,e.pageY)[0]]=beadColor
 				//new Audio('./bead.mp3').play()
 			}	
 		}
 	}
 	if(tool==2){
-		if(mouse[0]<35+Math.floor(paleta.length/pensPerRow)*24){
+		if(mouse[0]&lt;35+Math.floor(paleta.length/pensPerRow)*24){
 			beadColor=Math.floor(Math.floor((mouse[0])/24)*pensPerRow+Math.floor((mouse[1]))/24)+1
-			if(beadColor>paleta.length||beadColor<0){beadColor=0}
+			if(beadColor>paleta.length||beadColor&lt;0){beadColor=0}
 		}else{
 		if(isInside(...getPos(e.pageX,e.pageY))){
 			fillColor=getBead(...getPos(e.pageX,e.pageY))
@@ -396,7 +424,7 @@ onmousemove=(e)=>{
 	}
 	if(tool==1){
 		if(drawing==true){
-			if(isInside(...getPos(e.pageX,e.pageY))&&grid[getPos(e.pageX,e.pageY)[1]][getPos(e.pageX,e.pageY)[0]]!=beadColor){
+			if(isInside(...getPos(e.pageX,e.pageY))&amp;&amp;grid[getPos(e.pageX,e.pageY)[1]][getPos(e.pageX,e.pageY)[0]]!=beadColor){
 				grid[getPos(e.pageX,e.pageY)[1]][getPos(e.pageX,e.pageY)[0]]=beadColor
 				//new Audio('./bead.mp3').play()
 			}
@@ -442,9 +470,31 @@ if(localStorage.getItem("saves")){
 }
 
 document.addEventListener('keydown', function(event) {
-	if (event.ctrlKey && event.key === 'z' && Sav.length>0) {
+	if (event.ctrlKey &amp;&amp; event.key === 'z' &amp;&amp; Sav.length>0) {
 	  	Import(Sav.pop())
 	}
 	localStorage.setItem("draw",Export())
 	localStorage.setItem("saves",Sav)
-  });
+  });</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getPos">getPos</a></li><li><a href="global.html#isInside">isInside</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sat Jul 04 2020 03:28:00 GMT-0400 (GMT-04:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
