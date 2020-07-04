@@ -402,7 +402,6 @@ function draw(){
 setInterval(()=>{
 	//if(dragging){
 		draw()
-		
 	//}
 
 },1)
