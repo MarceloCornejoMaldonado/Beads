@@ -137,9 +137,9 @@ function getBead(x,y){
  * Gets the position of a bead
  *
  *
- * @param `x` - the x position of the mouse
- * @param `y` - the y position of the mouse
- * @return the `x` and `y` position of the bead
+ * @param {number} `x` - the x position of the mouse
+ * @param {number} `y` - the y position of the mouse
+ * @return {Array } the `x` and `y` position of the bead
  *
 
 */
@@ -152,8 +152,8 @@ function getPos(x,y){
  * Checks if bead is inside the working space
  *
  *
- * @param `x` - the x position of the bead
- * @param `y` - the y position of the bead
+ * @param {number} `x` - the x position of the bead
+ * @param {number} `y` - the y position of the bead
  * @return {boolean} if it inside
  *
 
