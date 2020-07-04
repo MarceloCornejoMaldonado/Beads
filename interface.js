@@ -86,6 +86,7 @@ function Import(L){
 	}
 	localStorage.setItem("settings",[beadMode])
 }
+
 function Export(){
 	return width+","+height+","+compress(grid.map(k=>k.join(" ")).join(" "))
 }
@@ -95,6 +96,14 @@ function isBead(x,y){
 	return grid[y][x]!=0
 }
 
+/**
+ *  Apply Run-Length-Encoding to an spaced-string draw
+ *
+ *
+ * @param {string} `str` - data
+ * @return {string} `str` - encoded data
+
+*/
 function compress (str) {
 	var output = '';
 	var count = 0;
@@ -108,6 +117,14 @@ function compress (str) {
 	}
 	return output.substring(1);
   }
+/**
+ *  Decompress Run-Length-Encoding of an spaced-string encoded draw
+ *
+ *
+ * @param {string} `str` - data encoded
+ * @return {string} `str` - decoded data
+
+*/
 function decompress(str){
 	S=str.split(" ").map(k=>k.split("_"))
 	var output = '';
